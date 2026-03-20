@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plan de Rediseño RH · AMG Multi-Marca</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0f0e0c;
+    --bg2: #161513;
+    --bg3: #1d1b18;
+    --bg4: #252320;
+    --border: rgba(255,255,255,0.08);
+    --border2: rgba(255,255,255,0.13);
+    --text: #f0ede8;
+    --text2: #a09d97;
+    --text3: #6a6760;
+    --coral: #e8623a;
+    --coral-bg: rgba(232,98,58,0.1);
+    --coral-border: rgba(232,98,58,0.25);
+    --amber: #d4900a;
+    --amber-bg: rgba(212,144,10,0.1);
+    --amber-border: rgba(212,144,10,0.25);
+    --purple: #8b7cf8;
+    --purple-bg: rgba(139,124,248,0.1);
+    --purple-border: rgba(139,124,248,0.25);
+    --teal: #2ab893;
+    --teal-bg: rgba(42,184,147,0.1);
+    --teal-border: rgba(42,184,147,0.25);
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+
+  /* SIDEBAR */
+  .sidebar {
+    position: fixed;
+    left: 0; top: 0; bottom: 0;
+    width: 220px;
+    background: var(--bg2);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+    padding: 28px 0 20px;
+    transition: transform .3s;
+  }
+
+  .sidebar-logo {
+    padding: 0 22px 24px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 16px;
+  }
+
+  .sidebar-logo-tag {
+    font-size: 10px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--text3);
+    margin-bottom: 4px;
+  }
+
+  .sidebar-logo-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 17px;
+    color: var(--text);
+    line-height: 1.3;
+  }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 22px;
+    cursor: pointer;
+    color: var(--text3);
+    font-size: 13px;
+    font-weight: 400;
+    border-left: 2px solid transparent;
+    transition: all .15s;
+    text-decoration: none;
+    background: none;
+    border-top: none;
+    border-right: none;
+    border-bottom: none;
+    width: 100%;
+    text-align: left;
+  }
+
+  .nav-item:hover { color: var(--text2); background: rgba(255,255,255,0.03); }
+
+  .nav-item.active {
+    color: var(--text);
+    border-left-color: var(--coral);
+    background: rgba(232,98,58,0.06);
+  }
+
+  .nav-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--border2);
+    min-width: 6px;
+    transition: background .15s;
+  }
+
+  .nav-item.active .nav-dot { background: var(--coral); }
+
+  .sidebar-footer {
+    margin-top: auto;
+    padding: 16px 22px 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .sidebar-footer p {
+    font-size: 11px;
+    color: var(--text3);
+    line-height: 1.5;
+  }
+
+  /* MAIN */
+  .main {
+    margin-left: 220px;
+    min-height: 100vh;
+  }
+
+  /* PAGES */
+  .page { display: none; padding: 40px 48px 80px; max-width: 900px; }
+  .page.active { display: block; }
+
+  /* HEADER */
+  .page-header {
+    margin-bottom: 36px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .page-header-eyebrow {
+    font-size: 11px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--text3);
+    margin-bottom: 8px;
+  }
+
+  .page-header h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--text);
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+
+  .page-header p {
+    font-size: 14px;
+    color: var(--text2);
+  }
+
+  /* SECTION LABEL */
+  .section-label {
+    font-size: 10px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--text3);
+    margin: 0 0 14px;
+  }
+
+  /* CARD */
+  .card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 12px;
+  }
+
+  .card-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .card-sub {
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.6;
+  }
+
+  /* TAGS */
+  .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+
+  .tag {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 9px;
+    border-radius: 99px;
+  }
+
+  .tag-coral { background: var(--coral-bg); color: var(--coral); border: 1px solid var(--coral-border); }
+  .tag-amber { background: var(--amber-bg); color: var(--amber); border: 1px solid var(--amber-border); }
+  .tag-purple { background: var(--purple-bg); color: var(--purple); border: 1px solid var(--purple-border); }
+  .tag-teal { background: var(--teal-bg); color: var(--teal); border: 1px solid var(--teal-border); }
+
+  /* PHASE STRIP */
+  .phase-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-bottom: 28px;
+  }
+
+  .phase-cell {
+    padding: 16px 14px;
+    text-align: center;
+  }
+
+  .phase-cell:not(:last-child) { border-right: 1px solid var(--border); }
+  .phase-cell.p1 { background: rgba(232,98,58,0.07); }
+  .phase-cell.p2 { background: rgba(212,144,10,0.07); }
+  .phase-cell.p3 { background: rgba(139,124,248,0.07); }
+  .phase-cell.p4 { background: rgba(42,184,147,0.07); }
+
+  .phase-num { font-size: 10px; font-weight: 600; letter-spacing: .06em; margin-bottom: 4px; }
+  .phase-num.p1 { color: var(--coral); }
+  .phase-num.p2 { color: var(--amber); }
+  .phase-num.p3 { color: var(--purple); }
+  .phase-num.p4 { color: var(--teal); }
+
+  .phase-title { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
+  .phase-time { font-size: 11px; color: var(--text3); }
+
+  /* PRIORITY CARDS */
+  .priority-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    margin-bottom: 10px;
+    border-left-width: 3px;
+  }
+
+  .priority-card.alta { border-left-color: var(--coral); }
+  .priority-card.media { border-left-color: var(--amber); }
+
+  .priority-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+
+  .priority-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    min-width: 7px;
+  }
+
+  .alta .priority-dot { background: var(--coral); }
+  .media .priority-dot { background: var(--amber); }
+
+  /* ALERT BOX */
+  .alert {
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    margin-bottom: 12px;
+  }
+
+  .alert-coral { background: var(--coral-bg); border: 1px solid var(--coral-border); }
+  .alert-purple { background: var(--purple-bg); border: 1px solid var(--purple-border); }
+  .alert-teal { background: var(--teal-bg); border: 1px solid var(--teal-border); }
+
+  .alert-title {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+
+  .alert-coral .alert-title { color: var(--coral); }
+  .alert-purple .alert-title { color: var(--purple); }
+  .alert-teal .alert-title { color: var(--teal); }
+
+  .alert p { font-size: 13px; color: var(--text2); line-height: 1.6; }
+
+  /* ROLE ROW */
+  .role-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .role-row:last-child { border-bottom: none; }
+
+  .role-avatar {
+    width: 38px; height: 38px;
+    min-width: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  .role-name { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
+  .role-resp { font-size: 13px; color: var(--text2); line-height: 1.5; }
+
+  /* CHECK ITEMS */
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 11px;
+    padding: 11px 0;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+  }
+
+  .check-item:last-child { border-bottom: none; }
+
+  .check-box {
+    width: 18px; height: 18px;
+    min-width: 18px;
+    border-radius: 4px;
+    border: 1.5px solid var(--border2);
+    margin-top: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .15s;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .check-box.done {
+    background: var(--teal);
+    border-color: var(--teal);
+  }
+
+  .check-box.done::after {
+    content: '';
+    display: block;
+    width: 9px; height: 6px;
+    border-left: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    transform: rotate(-45deg) translateY(-1px);
+  }
+
+  .check-label {
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.5;
+    transition: all .15s;
+  }
+
+  .check-label.done {
+    color: var(--text3);
+    text-decoration: line-through;
+  }
+
+  /* PHASE SECTION */
+  .phase-section { margin-bottom: 28px; }
+
+  .phase-section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  .phase-pill {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 99px;
+  }
+
+  .pill-coral { background: var(--coral-bg); color: var(--coral); border: 1px solid var(--coral-border); }
+  .pill-amber { background: var(--amber-bg); color: var(--amber); border: 1px solid var(--amber-border); }
+  .pill-purple { background: var(--purple-bg); color: var(--purple); border: 1px solid var(--purple-border); }
+  .pill-teal { background: var(--teal-bg); color: var(--teal); border: 1px solid var(--teal-border); }
+
+  .phase-section-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .phase-section-time {
+    font-size: 12px;
+    color: var(--text3);
+    margin-left: auto;
+  }
+
+  /* KPI GRID */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .kpi-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+  }
+
+  .kpi-name { font-size: 12px; color: var(--text3); margin-bottom: 6px; }
+  .kpi-val { font-size: 22px; font-weight: 500; margin-bottom: 8px; }
+  .kpi-bar-bg { height: 3px; background: var(--bg4); border-radius: 99px; margin-bottom: 6px; }
+  .kpi-bar { height: 3px; border-radius: 99px; }
+  .kpi-note { font-size: 11px; color: var(--text3); }
+
+  /* SIGNALS */
+  .signal-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+
+  .signal-box {
+    border-radius: var(--radius);
+    padding: 18px;
+  }
+
+  .signal-box.ok { background: var(--teal-bg); border: 1px solid var(--teal-border); }
+  .signal-box.fail { background: var(--coral-bg); border: 1px solid var(--coral-border); }
+
+  .signal-box-title {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .04em;
+    margin-bottom: 12px;
+  }
+
+  .signal-box.ok .signal-box-title { color: var(--teal); }
+  .signal-box.fail .signal-box-title { color: var(--coral); }
+
+  .signal-item {
+    font-size: 12px;
+    color: var(--text2);
+    padding: 7px 0;
+    border-bottom: 1px solid var(--border);
+    line-height: 1.4;
+  }
+
+  .signal-item:last-child { border-bottom: none; }
+
+  /* ERROR LIST */
+  .error-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .error-item:last-child { border-bottom: none; }
+
+  .error-num {
+    width: 24px; height: 24px;
+    min-width: 24px;
+    border-radius: 50%;
+    background: var(--coral-bg);
+    border: 1px solid var(--coral-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--coral);
+    margin-top: 1px;
+  }
+
+  .error-title { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
+  .error-desc { font-size: 12px; color: var(--text2); line-height: 1.5; }
+
+  /* AUDIT PROGRESS */
+  .audit-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+
+  .audit-score-label { font-size: 13px; color: var(--text2); }
+  .audit-count { font-size: 13px; font-weight: 500; color: var(--text); }
+
+  .progress-bar-bg {
+    height: 5px;
+    background: var(--bg4);
+    border-radius: 99px;
+    margin-bottom: 6px;
+  }
+
+  .progress-bar {
+    height: 5px;
+    border-radius: 99px;
+    background: var(--teal);
+    transition: width .4s ease;
+  }
+
+  .audit-result {
+    padding: 12px 16px;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    display: none;
+  }
+
+  .audit-section-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+    margin: 20px 0 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* MOBILE */
+  .hamburger {
+    display: none;
+    position: fixed;
+    top: 16px; left: 16px;
+    z-index: 200;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    width: 38px; height: 38px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 16px; height: 1.5px;
+    background: var(--text2);
+    border-radius: 2px;
+  }
+
+  .sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 99;
+  }
+
+  @media (max-width: 768px) {
+    .sidebar { transform: translateX(-100%); }
+    .sidebar.open { transform: translateX(0); }
+    .main { margin-left: 0; }
+    .page { padding: 70px 20px 60px; }
+    .kpi-grid { grid-template-columns: 1fr; }
+    .signal-grid { grid-template-columns: 1fr; }
+    .phase-strip { grid-template-columns: repeat(2, 1fr); }
+    .hamburger { display: flex; }
+    .sidebar-overlay.open { display: block; }
+  }
+</style>
+</head>
+<body>
+
+<button class="hamburger" id="hamburger" onclick="toggleSidebar()">
+  <span></span><span></span><span></span>
+</button>
+<div class="sidebar-overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <p class="sidebar-logo-tag">AMG Multi-Marca</p>
+    <p class="sidebar-logo-title">Plan de Rediseño<br><em>RH de Clase Mundial</em></p>
+  </div>
+
+  <button class="nav-item active" onclick="showPage('overview', this)"><span class="nav-dot"></span>Vista general</button>
+  <button class="nav-item" onclick="showPage('estructura', this)"><span class="nav-dot"></span>Estructura</button>
+  <button class="nav-item" onclick="showPage('fases', this)"><span class="nav-dot"></span>Fases y acciones</button>
+  <button class="nav-item" onclick="showPage('kpis', this)"><span class="nav-dot"></span>KPIs</button>
+  <button class="nav-item" onclick="showPage('checklist', this)"><span class="nav-dot"></span>Checklist</button>
+  <button class="nav-item" onclick="showPage('senales', this)"><span class="nav-dot"></span>Señales</button>
+
+  <div class="sidebar-footer">
+    <p>300+ empleados · 7 marcas<br>Operación en crecimiento</p>
+  </div>
+</nav>
+
+<main class="main">
+
+<!-- ====== OVERVIEW ====== -->
+<div class="page active" id="page-overview">
+  <div class="page-header">
+    <p class="page-header-eyebrow">Hoja de ruta · 4 fases · 12 meses</p>
+    <h1>Vista general</h1>
+    <p>Diagnóstico, estructura, procesos y escala para un RH de clase mundial en food service multi-marca.</p>
+  </div>
+
+  <p class="section-label">Hoja de ruta</p>
+  <div class="phase-strip">
+    <div class="phase-cell p1">
+      <p class="phase-num p1">Fase 1</p>
+      <p class="phase-title">Diagnóstico</p>
+      <p class="phase-time">Mes 1–2</p>
+    </div>
+    <div class="phase-cell p2">
+      <p class="phase-num p2">Fase 2</p>
+      <p class="phase-title">Estructura</p>
+      <p class="phase-time">Mes 2–4</p>
+    </div>
+    <div class="phase-cell p3">
+      <p class="phase-num p3">Fase 3</p>
+      <p class="phase-title">Procesos</p>
+      <p class="phase-time">Mes 4–8</p>
+    </div>
+    <div class="phase-cell p4">
+      <p class="phase-num p4">Fase 4</p>
+      <p class="phase-title">Escala</p>
+      <p class="phase-time">Mes 8–12</p>
+    </div>
+  </div>
+
+  <p class="section-label">Prioridades inmediatas</p>
+
+  <div class="priority-card alta">
+    <div class="priority-label">
+      <div class="priority-dot"></div>
+      <span class="card-title">Pipeline de futuros gerentes</span>
+    </div>
+    <p class="card-sub">Nombrar hoy a los próximos 5 candidatos. Diseñar programa de 6–9 meses con etapas medibles.</p>
+    <div class="tag-row">
+      <span class="tag tag-coral">Alta prioridad</span>
+      <span class="tag tag-purple">Fase 2</span>
+      <span class="tag tag-amber">Bloquea aperturas</span>
+    </div>
+  </div>
+
+  <div class="priority-card alta">
+    <div class="priority-label">
+      <div class="priority-dot"></div>
+      <span class="card-title">Onboarding estructurado de 30 días</span>
+    </div>
+    <p class="card-sub">Diseñar flujo con checklist firmado, responsable asignado y punto de contacto de RH. El primer mes decide si el empleado se queda o no.</p>
+    <div class="tag-row">
+      <span class="tag tag-coral">Alta prioridad</span>
+      <span class="tag tag-purple">Fase 2–3</span>
+      <span class="tag tag-amber">Reduce rotación 90 días</span>
+    </div>
+  </div>
+
+  <div class="priority-card alta">
+    <div class="priority-label">
+      <div class="priority-dot"></div>
+      <span class="card-title">Reclutamiento con pipeline activo</span>
+    </div>
+    <p class="card-sub">Candidatos pre-evaluados disponibles siempre. No reclutar solo cuando hay urgencia.</p>
+    <div class="tag-row">
+      <span class="tag tag-coral">Alta prioridad</span>
+      <span class="tag tag-purple">Fase 2</span>
+      <span class="tag tag-amber">KPI: cubrir en &lt;7 días</span>
+    </div>
+  </div>
+
+  <div class="priority-card media">
+    <div class="priority-label">
+      <div class="priority-dot"></div>
+      <span class="card-title">KPIs de RH activos y visibles</span>
+    </div>
+    <p class="card-sub">Rotación por marca, costo de reemplazo, cobertura interna — revisión mensual con dirección.</p>
+    <div class="tag-row">
+      <span class="tag tag-amber">Media prioridad</span>
+      <span class="tag tag-purple">Fase 1–2</span>
+    </div>
+  </div>
+
+  <p class="section-label" style="margin-top: 28px;">Tu problema crítico</p>
+  <div class="alert alert-coral">
+    <p class="alert-title">No puedes crear gerentes internos</p>
+    <p>No es un problema de capacitación — es un problema de sistema. No existe un proceso que identifique, seleccione, desarrolle y certifique futuros líderes de manera intencional. Mientras no exista como proceso formal con responsable, métricas y presupuesto asignado, cada apertura va a depender del mercado externo. Y el mercado externo en tu sector es caro, lento e incierto.</p>
+  </div>
+
+  <div class="alert alert-teal" style="margin-top: 10px;">
+    <p class="alert-title">Punto de partida recomendado</p>
+    <p>Empieza con el Checklist de auditoría (sección 5). Respóndelo con tu Gerente de RH en la primera sesión de trabajo. El resultado te dice exactamente en qué nivel estás y qué priorizar en las próximas 4 semanas.</p>
+  </div>
+</div>
+
+<!-- ====== ESTRUCTURA ====== -->
+<div class="page" id="page-estructura">
+  <div class="page-header">
+    <p class="page-header-eyebrow">Organigrama ideal · 5 personas</p>
+    <h1>Estructura de RH</h1>
+    <p>Equipo mínimo viable para una operación multi-marca de 300+ empleados en crecimiento activo.</p>
+  </div>
+
+  <p class="section-label">Equipo ideal</p>
+  <div class="card">
+    <div class="role-row">
+      <div class="role-avatar" style="background: var(--purple-bg); color: var(--purple);">DIR</div>
+      <div style="flex:1;">
+        <p class="role-name">Director de RH <span style="font-size:11px;color:var(--purple);background:var(--purple-bg);border:1px solid var(--purple-border);padding:2px 8px;border-radius:99px;font-weight:500;margin-left:6px;">Tú</span></p>
+        <p class="role-resp">Habla el lenguaje del negocio. Reporta a CEO/COO. Está en todas las juntas de apertura desde el día 1. No es especialista en RRHH — es operador que entiende de personas y está en campo.</p>
+      </div>
+    </div>
+    <div class="role-row">
+      <div class="role-avatar" style="background: var(--coral-bg); color: var(--coral);">REC</div>
+      <div style="flex:1;">
+        <p class="role-name">Coordinador de Reclutamiento y Onboarding <span style="font-size:11px;color:var(--coral);background:var(--coral-bg);border:1px solid var(--coral-border);padding:2px 8px;border-radius:99px;font-weight:500;margin-left:6px;">Contratar</span></p>
+        <p class="role-resp">Su única métrica: tiempo para cubrir vacante y retención a 90 días. Pipeline activo siempre. En una operación en crecimiento, esta posición trabaja todos los días.</p>
+      </div>
+    </div>
+    <div class="role-row">
+      <div class="role-avatar" style="background: var(--amber-bg); color: var(--amber);">CAP</div>
+      <div style="flex:1;">
+        <p class="role-name">Coordinador de Capacitación y Desarrollo <span style="font-size:11px;color:var(--amber);background:var(--amber-bg);border:1px solid var(--amber-border);padding:2px 8px;border-radius:99px;font-weight:500;margin-left:6px;">Contratar</span></p>
+        <p class="role-resp">Diseña y ejecuta certificación por puesto, programa de futuros gerentes y onboarding estructurado. Convierte empleados nuevos en productivos rápido.</p>
+      </div>
+    </div>
+    <div class="role-row">
+      <div class="role-avatar" style="background: var(--bg4); color: var(--text3);">NOM</div>
+      <div style="flex:1;">
+        <p class="role-name">Coordinador de Nómina y Administración <span style="font-size:11px;color:var(--text3);background:var(--bg4);border:1px solid var(--border);padding:2px 8px;border-radius:99px;font-weight:500;margin-left:6px;">¿Ya existe?</span></p>
+        <p class="role-resp">Contratos, incidencias, IMSS, nómina, bajas. Proceso, no decisión. Existe para que ninguna otra persona en RH pierda tiempo en operación administrativa.</p>
+      </div>
+    </div>
+    <div class="role-row">
+      <div class="role-avatar" style="background: var(--teal-bg); color: var(--teal);">BP</div>
+      <div style="flex:1;">
+        <p class="role-name">Business Partner de RH — Operaciones <span style="font-size:11px;color:var(--teal);background:var(--teal-bg);border:1px solid var(--teal-border);padding:2px 8px;border-radius:99px;font-weight:500;margin-left:6px;">Fase 2</span></p>
+        <p class="role-resp">Clave para tus 7 marcas. No trabaja en oficina — está en campo. Visita las unidades, conoce a los gerentes por nombre, detecta problemas antes de que exploten.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="alert alert-teal" style="margin-top:14px;">
+    <p class="alert-title">Regla de escala</p>
+    <p>Cuando llegues a 500 empleados o 10+ unidades: añades un segundo Business Partner y un especialista en Compensaciones. No antes.</p>
+  </div>
+
+  <p class="section-label" style="margin-top:24px;">Lo que RH NO debe ser en tu empresa</p>
+  <div class="card">
+    <p class="card-sub" style="line-height:2.2;">
+      &nbsp;✕&nbsp; El área que procesa papeles y vive en la oficina<br>
+      &nbsp;✕&nbsp; La que resuelve conflictos cuando ya explotaron<br>
+      &nbsp;✕&nbsp; La que organiza el día del empleado como función principal<br>
+      &nbsp;✕&nbsp; El gerente de unidad haciendo de RH solo, sin soporte ni proceso
+    </p>
+  </div>
+</div>
+
+<!-- ====== FASES ====== -->
+<div class="page" id="page-fases">
+  <div class="page-header">
+    <p class="page-header-eyebrow">Plan de acción · 12 meses</p>
+    <h1>Fases y acciones</h1>
+    <p>Marca cada tarea conforme avancen. Úsalo como tablero de seguimiento en las reuniones con tu Gerente de RH.</p>
+  </div>
+
+  <div class="phase-section">
+    <div class="phase-section-header">
+      <span class="phase-pill pill-coral">Fase 1</span>
+      <span class="phase-section-title">Diagnóstico — antes de mover nada, saber dónde estás</span>
+      <span class="phase-section-time">Mes 1–2</span>
+    </div>
+    <div class="card" style="padding:14px 20px;">
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><p class="check-label">Calcular rotación real desglosada por marca y por puesto</p></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><p class="check-label">Calcular costo de reemplazar una posición operativa (mínimo 3 marcas)</p></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><p class="check-label">Mapear dónde se toman decisiones de personal hoy: ¿gerente solo, RH, o nadie?</p></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><p class="check-label">Identificar tiempo promedio para cubrir vacantes por puesto y marca</p></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><p class="check-label">Nombrar candidatos internos a posiciones gerenciales (si los hay)</p></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><p class="check-label">Auditar qué procesos de RH existen documentados vs solo en la cabeza de alguien</p></div>
+    </div>
+  </div>
+
+  <div class="phase-section">
+    <div class="phase-section-header">
+      <span class="phase-pill pill-amber">Fase 2</span>
+      <span class="phase-section-title">Estructura — contratar, asignar, lanzar pipeline</span>
+      <span class="phase-section-time">Mes 2–4</span>
+    </div>
+    <div class="card" style="padding:14px 20px;">
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><p class="check-label">Contratar Coordinador de Reclutamiento y Onboarding</p></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><p class="check-label">Contratar Coordinador de Capacitación y Desarrollo</p></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><p class="check-label">Definir Business Partner (interno o externo por ahora)</p></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><p class="check-label">Lanzar proceso de reclutamiento con pipeline activo — candidatos pre-evaluados siempre</p></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><p class="check-label">Definir fuentes de reclutamiento probadas por puesto y marca</p></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><p class="check-label">Seleccionar los 5 candidatos para el programa de futuros gerentes</p></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><p class="check-label">Activar KPIs: rotación, tiempo de cobertura, retención a 90 días</p></div>
+    </div>
+  </div>
+
+  <div class="phase-section">
+    <div class="phase-section-header">
+      <span class="phase-pill pill-purple">Fase 3</span>
+      <span class="phase-section-title">Procesos — sistematizar, documentar, ejecutar</span>
+      <span class="phase-section-time">Mes 4–8</span>
+    </div>
+    <div class="card" style="padding:14px 20px;">
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><p class="check-label">Lanzar onboarding estructurado de 30 días con checklist firmado por responsable</p></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><p class="check-label">Implementar certificación por puesto en al menos 2 marcas piloto</p></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><p class="check-label">Arrancar formalmente el programa de futuros gerentes — ruta de 6–9 meses con etapas</p></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><p class="check-label">Implementar entrevista de salida para todo empleado que se va</p></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><p class="check-label">Primera evaluación semestral de desempeño — 20 minutos, operativa, con registro</p></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><p class="check-label">Revisar costo laboral como % de ventas con dirección (primera revisión formal)</p></div>
+    </div>
+  </div>
+
+  <div class="phase-section">
+    <div class="phase-section-header">
+      <span class="phase-pill pill-teal">Fase 4</span>
+      <span class="phase-section-title">Escala — automatizar, replicar, preparar crecimiento</span>
+      <span class="phase-section-time">Mes 8–12</span>
+    </div>
+    <div class="card" style="padding:14px 20px;">
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><p class="check-label">Extender certificación por puesto a todas las marcas</p></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><p class="check-label">Activar eNPS trimestral como termómetro de cultura</p></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><p class="check-label">Presentar a los primeros gerentes certificados del pipeline interno</p></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><p class="check-label">Evaluar si agregar segundo Business Partner (trigger: 500 emp. o 10+ unidades)</p></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><p class="check-label">Automatizar onboarding con herramientas digitales</p></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><p class="check-label">Revisión anual de estructura de compensaciones vs mercado</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== KPIs ====== -->
+<div class="page" id="page-kpis">
+  <div class="page-header">
+    <p class="page-header-eyebrow">Tablero de métricas · valores sanos</p>
+    <h1>KPIs de RH</h1>
+    <p>Estos números el Director de RH debe saber de memoria en cualquier junta con dirección.</p>
+  </div>
+
+  <p class="section-label">Indicadores clave</p>
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <p class="kpi-name">Rotación anual operativa</p>
+      <p class="kpi-val" style="color:var(--amber)">60–80%</p>
+      <div class="kpi-bar-bg"><div class="kpi-bar" style="width:65%;background:var(--amber);"></div></div>
+      <p class="kpi-note">Sector normal. Tu meta: estar por debajo del mercado</p>
+    </div>
+    <div class="kpi-card">
+      <p class="kpi-name">Rotación primeros 90 días</p>
+      <p class="kpi-val" style="color:var(--teal)">&lt;20%</p>
+      <div class="kpi-bar-bg"><div class="kpi-bar" style="width:20%;background:var(--teal);"></div></div>
+      <p class="kpi-note">Falla de reclutamiento u onboarding</p>
+    </div>
+    <div class="kpi-card">
+      <p class="kpi-name">Tiempo para cubrir vacante operativa</p>
+      <p class="kpi-val" style="color:var(--teal)">&lt;7 días</p>
+      <div class="kpi-bar-bg"><div class="kpi-bar" style="width:30%;background:var(--teal);"></div></div>
+      <p class="kpi-note">Gerente: &lt;21 días</p>
+    </div>
+    <div class="kpi-card">
+      <p class="kpi-name">Vacantes cubiertas internamente</p>
+      <p class="kpi-val" style="color:var(--purple)">&gt;40%</p>
+      <div class="kpi-bar-bg"><div class="kpi-bar" style="width:40%;background:var(--purple);"></div></div>
+      <p class="kpi-note">Solo posiciones de liderazgo</p>
+    </div>
+    <div class="kpi-card">
+      <p class="kpi-name">Ausentismo</p>
+      <p class="kpi-val" style="color:var(--teal)">&lt;3%</p>
+      <div class="kpi-bar-bg"><div class="kpi-bar" style="width:20%;background:var(--teal);"></div></div>
+      <p class="kpi-note">En turno normal. Si sube: revisar clima</p>
+    </div>
+    <div class="kpi-card">
+      <p class="kpi-name">eNPS (clima laboral)</p>
+      <p class="kpi-val" style="color:var(--purple)">+20 a +40</p>
+      <div class="kpi-bar-bg"><div class="kpi-bar" style="width:55%;background:var(--purple);"></div></div>
+      <p class="kpi-note">+20 aceptable · +40 sólido · medir trimestral</p>
+    </div>
+    <div class="kpi-card">
+      <p class="kpi-name">Costo laboral / ventas</p>
+      <p class="kpi-val" style="color:var(--amber)">28–34%</p>
+      <div class="kpi-bar-bg"><div class="kpi-bar" style="width:60%;background:var(--amber);"></div></div>
+      <p class="kpi-note">Revisión mensual. RH lo debe conocer de memoria</p>
+    </div>
+    <div class="kpi-card">
+      <p class="kpi-name">Ratio RH / empleados</p>
+      <p class="kpi-val" style="color:var(--teal)">1:60–80</p>
+      <div class="kpi-bar-bg"><div class="kpi-bar" style="width:50%;background:var(--teal);"></div></div>
+      <p class="kpi-note">1 persona de RH por cada 60–80 empleados</p>
+    </div>
+  </div>
+
+  <p class="section-label" style="margin-top:8px;">El KPI más importante para ti ahora mismo</p>
+  <div class="alert alert-purple">
+    <p class="alert-title">% de posiciones gerenciales cubiertas internamente</p>
+    <p>Si este número está por debajo del 40%, tu crecimiento está limitado por talento, no por oportunidades. Meta de 12 meses: llegar a 40% con los primeros graduados del programa de futuros gerentes.</p>
+  </div>
+
+  <p class="section-label" style="margin-top:20px;">Costo de rotación — tienes que calcularlo esta semana</p>
+  <div class="card">
+    <p class="card-title" style="color:var(--coral);margin-bottom:8px;">$15,000–$40,000 MXN por posición operativa</p>
+    <p class="card-sub">Incluye: reclutamiento + tiempo de gerente + errores durante curva de aprendizaje + pérdida de productividad en primeros 30 días + carga sobre el equipo que sí está. Si no lo tienes calculado, calcularlo esta semana es la tarea número uno. Si lo calculas bien, deja de tratar la rotación como inevitable y empieza a tratarla como lo que es: una pérdida financiera concreta y recuperable.</p>
+  </div>
+</div>
+
+<!-- ====== CHECKLIST ====== -->
+<div class="page" id="page-checklist">
+  <div class="page-header">
+    <p class="page-header-eyebrow">Auditoría de RH · 20 preguntas</p>
+    <h1>Checklist de evaluación</h1>
+    <p>Responde con honestidad junto a tu Gerente de RH. El resultado dice exactamente en qué nivel está tu área hoy.</p>
+  </div>
+
+  <div class="audit-header">
+    <span class="audit-score-label">Progreso</span>
+    <span class="audit-count" id="audit-count">0 / 20</span>
+  </div>
+  <div class="progress-bar-bg"><div class="progress-bar" id="audit-bar" style="width:0%"></div></div>
+  <div class="audit-result" id="audit-result"></div>
+
+  <p class="audit-section-title">Estructura y roles</p>
+  <div class="card" style="padding:12px 18px;">
+    <div class="check-item" onclick="toggleAudit(this)"><div class="check-box audit"></div><p class="check-label">Director de RH que habla el lenguaje del negocio (ventas, costos, aperturas)</p></div>
+    <div class="check-item" onclick="toggleAudit(this)"><div class="check-box audit"></div><p class="check-label">Alguien en RH con función exclusiva de reclutamiento y onboarding</p></div>
+    <div class="check-item" onclick="toggleAudit(this)"><div class="check-box audit"></div><p class="check-label">Alguien de RH visita unidades regularmente — no solo cuando hay problema</p></div>
+    <div class="check-item" onclick="toggleAudit(this)"><div class="check-box audit"></div><p class="check-label">Nómina y administración separadas de funciones estratégicas de RH</p></div>
+  </div>
+
+  <p class="audit-section-title">Reclutamiento</p>
+  <div class="card" style="padding:12px 18px;">
+    <div class="check-item" onclick="toggleAudit(this)"><div class="check-box audit"></div><p class="check-label">Candidatos pre-evaluados esperando antes de que surja la vacante</p></div>
+    <div class="check-item" onclick="toggleAudit(this)"><div class="check-box audit"></div><p class="check-label">Sé cuántos días tarda en promedio cubrir cada tipo de posición</p></div>
+    <div class="check-item" onclick="toggleAudit(this)"><div class="check-box audit"></div><p class="check-label">Fuentes de reclutamiento definidas y probadas por tipo de puesto</p></div>
+  </div>
+
+  <p class="audit-section-title">Onboarding y capacitación</p>
+  <div class="card" style="padding:12px 18px;">
+    <div class="check-item" onclick="toggleAudit(this)"><div class="check-box audit"></div><p class="check-label">Proceso de onboarding documentado con responsables y tiempos definidos</p></div>
+    <div class="check-item" onclick="toggleAudit(this)"><div class="check-box audit"></div><p class="check-label">Cada posición tiene competencias mínimas y evaluación antes de operar solo</p></div>
+    <div class="check-item" onclick="toggleAudit(this)"><div class="check-box audit"></div><p class="check-label">Mido retención a 30, 60 y 90 días de cada contratación</p></div>
+  </div>
+
+  <p class="audit-section-title">Desarrollo de liderazgo</p>
+  <div class="card" style="padding:12px 18px;">
+    <div class="check-item" onclick="toggleAudit(this)"><div class="check-box audit"></div><p class="check-label">Programa formal para desarrollar futuros gerentes (no informal, no improvisado)</p></div>
+    <div class="check-item" onclick="toggleAudit(this)"><div class="check-box audit"></div><p class="check-label">Puedo nombrar ahora mismo mis próximos 5 gerentes y en qué etapa de desarrollo están</p></div>
+    <div class="check-item" onclick="toggleAudit(this)"><div class="check-box audit"></div><p class="check-label">Al menos el 40% de mis últimas promociones gerenciales vinieron de adentro</p></div>
+  </div>
+
+  <p class="audit-section-title">Indicadores</p>
+  <div class="card" style="padding:12px 18px;">
+    <div class="check-item" onclick="toggleAudit(this)"><div class="check-box audit"></div><p class="check-label">Conozco mi rotación desglosada por marca y por puesto</p></div>
+    <div class="check-item" onclick="toggleAudit(this)"><div class="check-box audit"></div><p class="check-label">Tengo calculado el costo real de reemplazar una posición operativa</p></div>
+    <div class="check-item" onclick="toggleAudit(this)"><div class="check-box audit"></div><p class="check-label">El costo laboral como % de ventas se revisa mensualmente</p></div>
+    <div class="check-item" onclick="toggleAudit(this)"><div class="check-box audit"></div><p class="check-label">Tengo eNPS u otro indicador de clima medido periódicamente</p></div>
+  </div>
+
+  <p class="audit-section-title">Operación</p>
+  <div class="card" style="padding:12px 18px;">
+    <div class="check-item" onclick="toggleAudit(this)"><div class="check-box audit"></div><p class="check-label">Los gerentes de unidad tienen soporte de RH para tomar decisiones de personal</p></div>
+    <div class="check-item" onclick="toggleAudit(this)"><div class="check-box audit"></div><p class="check-label">Existe proceso de entrevista de salida para todo empleado que se va</p></div>
+    <div class="check-item" onclick="toggleAudit(this)"><div class="check-box audit"></div><p class="check-label">RH está incluido en la planeación de nuevas aperturas desde el inicio</p></div>
+  </div>
+</div>
+
+<!-- ====== SEÑALES ====== -->
+<div class="page" id="page-senales">
+  <div class="page-header">
+    <p class="page-header-eyebrow">Diagnóstico rápido</p>
+    <h1>Señales y errores</h1>
+    <p>Para auditar el estado de RH en cualquier momento, sin necesidad de un análisis largo.</p>
+  </div>
+
+  <p class="section-label">RH funcionando vs fallando</p>
+  <div class="signal-grid">
+    <div class="signal-box ok">
+      <p class="signal-box-title">✓ RH ESTÁ FUNCIONANDO</p>
+      <div class="signal-item">Puedes nombrar a tus próximos 3 gerentes y en qué fecha serán promovidos</div>
+      <div class="signal-item">Cada apertura tiene al equipo listo antes del primer día de operación</div>
+      <div class="signal-item">Los gerentes no pierden tiempo en trámites — RH los resuelve</div>
+      <div class="signal-item">La rotación en los primeros 90 días baja trimestre a trimestre</div>
+      <div class="signal-item">La nómina no sorprende a nadie al cierre del mes</div>
+      <div class="signal-item">El talento de alto desempeño se queda y el de bajo tiene proceso claro</div>
+    </div>
+    <div class="signal-box fail">
+      <p class="signal-box-title">✗ RH ESTÁ FALLANDO</p>
+      <div class="signal-item">Una apertura se retrasa porque no hay equipo suficiente</div>
+      <div class="signal-item">Los gerentes contratan "al primero disponible" porque hay urgencia</div>
+      <div class="signal-item">No sabes tu rotación real por marca o por puesto</div>
+      <div class="signal-item">No tienes calculado cuánto te cuesta reemplazar a alguien</div>
+      <div class="signal-item">Las malas contrataciones duran porque no hay proceso de salida claro</div>
+      <div class="signal-item">RH se entera de los problemas cuando ya explotaron</div>
+    </div>
+  </div>
+
+  <p class="section-label" style="margin-top:12px;">Los 7 errores más comunes en empresas de tu tamaño</p>
+  <div class="card">
+    <div class="error-item">
+      <div class="error-num">1</div>
+      <div><p class="error-title">Reclutamiento reactivo</p><p class="error-desc">Solo buscan cuando ya hay el puesto descubierto. Eso produce malas contrataciones porque se contrata al primero disponible, no al mejor.</p></div>
+    </div>
+    <div class="error-item">
+      <div class="error-num">2</div>
+      <div><p class="error-title">Sin costo de rotación calculado</p><p class="error-desc">Tratan la rotación como inevitable del sector y no como pérdida financiera concreta. Si calcularan el costo real por posición, cambiarían sus prioridades inmediatamente.</p></div>
+    </div>
+    <div class="error-item">
+      <div class="error-num">3</div>
+      <div><p class="error-title">El gerente de unidad es el departamento de RH</p><p class="error-desc">Contrata, entrena, evalúa, corrige, desvincula — solo, sin proceso, sin criterio uniforme. Eso agota al gerente y produce variación brutal entre unidades.</p></div>
+    </div>
+    <div class="error-item">
+      <div class="error-num">4</div>
+      <div><p class="error-title">Capacitación que no cambia comportamiento</p><p class="error-desc">Inducción de 4 horas el primer día + manual = rotación en los primeros 60 días. La capacitación que funciona es práctica, en el puesto, con evaluación y seguimiento.</p></div>
+    </div>
+    <div class="error-item">
+      <div class="error-num">5</div>
+      <div><p class="error-title">Sin programa formal de desarrollo de liderazgo</p><p class="error-desc">El gerente aparece porque "duró mucho tiempo" o "le echaba ganas." Sin programa, sin criterio, sin preparación. Luego se preguntan por qué sus gerentes no saben administrar.</p></div>
+    </div>
+    <div class="error-item">
+      <div class="error-num">6</div>
+      <div><p class="error-title">RH vive en la oficina</p><p class="error-desc">En food service el negocio ocurre en la cocina y en el piso. Un área de RH que no visita las unidades con regularidad está gestionando en ciego.</p></div>
+    </div>
+    <div class="error-item">
+      <div class="error-num">7</div>
+      <div><p class="error-title">Miden headcount, no desempeño</p><p class="error-desc">Saben cuántas personas tienen pero no quiénes son sus mejores empleados, quiénes están en riesgo de salir y quiénes tienen potencial de crecer.</p></div>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<script>
+  function showPage(id, btn) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+    document.getElementById('page-' + id).classList.add('active');
+    btn.classList.add('active');
+    if (window.innerWidth <= 768) toggleSidebar();
+    window.scrollTo(0, 0);
+  }
+
+  function toggleCheck(item) {
+    const box = item.querySelector('.check-box');
+    const label = item.querySelector('.check-label');
+    box.classList.toggle('done');
+    label.classList.toggle('done');
+  }
+
+  const TOTAL = 20;
+  function toggleAudit(item) {
+    const box = item.querySelector('.check-box.audit');
+    const label = item.querySelector('.check-label');
+    box.classList.toggle('done');
+    label.classList.toggle('done');
+    updateAudit();
+  }
+
+  function updateAudit() {
+    const done = document.querySelectorAll('.check-box.audit.done').length;
+    const pct = Math.round((done / TOTAL) * 100);
+    document.getElementById('audit-bar').style.width = pct + '%';
+    document.getElementById('audit-count').textContent = done + ' / ' + TOTAL;
+    const res = document.getElementById('audit-result');
+    if (done === 0) { res.style.display = 'none'; return; }
+    res.style.display = 'block';
+    if (done >= 16) {
+      res.style.background = 'rgba(42,184,147,0.1)';
+      res.style.border = '1px solid rgba(42,184,147,0.25)';
+      res.style.color = '#2ab893';
+      res.textContent = done + '/20 · Bases sólidas. El trabajo es optimizar y escalar.';
+    } else if (done >= 10) {
+      res.style.background = 'rgba(212,144,10,0.1)';
+      res.style.border = '1px solid rgba(212,144,10,0.25)';
+      res.style.color = '#d4900a';
+      res.textContent = done + '/20 · Estructura parcial. Hay huecos críticos que tapar antes de la siguiente apertura.';
+    } else {
+      res.style.background = 'rgba(232,98,58,0.1)';
+      res.style.border = '1px solid rgba(232,98,58,0.25)';
+      res.style.color = '#e8623a';
+      res.textContent = done + '/20 · Operación reactiva. Rediseñar el área antes del próximo crecimiento es urgente.';
+    }
+  }
+
+  function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('open');
+    document.getElementById('overlay').classList.toggle('open');
+  }
+</script>
+</body>
+</html>
